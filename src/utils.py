@@ -7,7 +7,8 @@ from pathlib import Path
 src_path = Path(os.path.dirname(os.path.realpath(__file__)))
 root_path = src_path.parent.absolute()
 input_path = os.path.join(root_path, "inputs")
-output_filepath = os.path.join(root_path, "musicinfo.csv")
+output_musicinfo_table_filepath = os.path.join(root_path, "musicinfo.csv")
+output_music_order_table_filepath = os.path.join(root_path, "music_order.csv")
 music_attribute_filename = "music_attribute.bin"
 music_order_filename = "music_order.bin"
 musicinfo_filename = "musicinfo.bin"
