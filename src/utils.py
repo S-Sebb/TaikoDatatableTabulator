@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-import gzip
 import json
 import os
 from pathlib import Path
@@ -7,12 +6,12 @@ from pathlib import Path
 src_path = Path(os.path.dirname(os.path.realpath(__file__)))
 root_path = src_path.parent.absolute()
 input_path = os.path.join(root_path, "inputs")
-output_musicinfo_table_filepath = os.path.join(root_path, "musicinfo.csv")
-output_music_order_table_filepath = os.path.join(root_path, "music_order.csv")
-music_attribute_filename = "music_attribute.bin"
-music_order_filename = "music_order.bin"
-musicinfo_filename = "musicinfo.bin"
-wordlist_filename = "wordlist.bin"
+output_musicinfo_table_filepath = os.path.join(root_path, "musicinfo_based.csv")
+output_music_order_table_filepath = os.path.join(root_path, "music_order_based.csv")
+music_attribute_filename = "music_attribute.json"
+music_order_filename = "music_order.json"
+musicinfo_filename = "musicinfo.json"
+wordlist_filename = "wordlist.json"
 datatable_filenames = [music_attribute_filename, music_order_filename, musicinfo_filename, wordlist_filename]
 input_datatable_filepaths = [os.path.join(input_path, filename) for filename in datatable_filenames]
 
@@ -21,8 +20,8 @@ def get_datatable_files() -> list:
     data_list = []
     for filepath in input_datatable_filepaths:
         try:
-            with open(filepath, "rb") as f:
-                json_data = json.loads(gzip.decompress(f.read()).decode("utf-8"))["items"]
+            with open(filepath, "r", encoding="utf-8") as f:
+                json_data = json.load(f)["items"]
             data_list.append(json_data)
         except Exception as e:
             print("Error found in %s" % filepath)

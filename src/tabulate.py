@@ -24,8 +24,7 @@ for musicinfo in musicinfo_data:
         "starHard": musicinfo["starHard"],
         "starMania": musicinfo["starMania"],
         "starUra": musicinfo["starUra"],
-        "new": "NO",
-        "canPlayUra": "NO"
+        "new": "NO"
     }
     musicinfo_based_list.append(music)
 
@@ -65,16 +64,12 @@ for music_attribute in music_attribute_data:
                 music["new"] = "YES"
             else:
                 music["new"] = "NO"
-            if music_attribute["canPlayUra"]:
-                music["canPlayUra"] = "YES"
-            else:
-                music["canPlayUra"] = "NO"
             break
 
 musicinfo_based_list = sorted(musicinfo_based_list, key=lambda k: k["uniqueId"])
 
 headers = ["uniqueId", "songId", "songName", "songSubName", "musicinfo_genreNo", "music_order_genreNo",
-           "starEasy", "starNormal", "starHard", "starMania", "starUra", "new", "canPlayUra"]
+           "starEasy", "starNormal", "starHard", "starMania", "starUra", "new"]
 
 f_csv = open(output_musicinfo_table_filepath, "w+", encoding='utf-8-sig', newline="")
 writer = csv.writer(f_csv)
@@ -83,7 +78,7 @@ writer.writerow(headers)
 for music in musicinfo_based_list:
     writer.writerow([music["uniqueId"], music["songId"], music["songName"], music["songSubName"],
                      music["musicinfo_genreNo"], music["music_order_genreNo"], music["starEasy"], music["starNormal"],
-                     music["starHard"], music["starMania"], music["starUra"], music["new"], music["canPlayUra"]])
+                     music["starHard"], music["starMania"], music["starUra"], music["new"]])
 
 f_csv.close()
 
@@ -102,7 +97,6 @@ for music_order in music_order_data:
         "starMania": "",
         "starUra": "",
         "new": "NO",
-        "canPlayUra": "NO"
     }
     music_order_based_list.append(music)
 
@@ -131,10 +125,6 @@ for music_attribute in music_attribute_data:
                 music["new"] = "YES"
             else:
                 music["new"] = "NO"
-            if music_attribute["canPlayUra"]:
-                music["canPlayUra"] = "YES"
-            else:
-                music["canPlayUra"] = "NO"
 
 for musicinfo in musicinfo_data:
     unique_id = musicinfo["uniqueId"]
@@ -148,7 +138,7 @@ for musicinfo in musicinfo_data:
             music["starUra"] = musicinfo["starUra"]
 
 headers = ["music_order_genreNo", "uniqueId", "songId", "songName", "songSubName", "musicinfo_genreNo",
-           "starEasy", "starNormal", "starHard", "starMania", "starUra", "new", "canPlayUra"]
+           "starEasy", "starNormal", "starHard", "starMania", "starUra", "new"]
 
 f_csv = open(output_music_order_table_filepath, "w+", encoding='utf-8-sig', newline="")
 writer = csv.writer(f_csv)
@@ -157,7 +147,7 @@ writer.writerow(headers)
 for music in music_order_based_list:
     writer.writerow([music["music_order_genreNo"], music["uniqueId"], music["songId"], music["songName"],
                      music["songSubName"], music["musicinfo_genreNo"], music["starEasy"], music["starNormal"],
-                     music["starHard"], music["starMania"], music["starUra"], music["new"], music["canPlayUra"]])
+                     music["starHard"], music["starMania"], music["starUra"], music["new"]])
 
 f_csv.close()
 
